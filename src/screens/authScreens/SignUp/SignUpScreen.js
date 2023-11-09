@@ -2,9 +2,9 @@ import React, { useRef, useState } from "react";
 import { View, ScrollView, Text, TextInput } from "react-native";
 import styles from "./SignUpScreen.Styles";
 import Header from "../../../components/Header";
-import { Colors, title } from "../../../global/styles";
+import { Colors, Parameters, title } from "../../../global/styles";
 import { Formik } from "formik";
-import { Icon } from "react-native-elements";
+import { Icon, Button } from "react-native-elements";
 import * as Animatable from "react-native-animatable";
 
 const initialValues = {
@@ -115,6 +115,7 @@ export default function SignUpScreen({ navigation }) {
                     iconStyle={{ color: Colors.grey2 }}
                   />
                 </Animatable.View>
+
                 <TextInput
                   placeholder="Password"
                   ref={passwordRef}
@@ -130,6 +131,7 @@ export default function SignUpScreen({ navigation }) {
                   value={props.values.password}
                   keyboardType="visible-password"
                 />
+
                 <Animatable.View
                   animation={bluredPassword ? "fadeInRight" : "fadeInLeft"}
                   duration={400}
@@ -143,9 +145,49 @@ export default function SignUpScreen({ navigation }) {
                   />
                 </Animatable.View>
               </View>
+
+              <View style={styles.termsAndConditionView}>
+                <Text style={styles.termsAndConditionText}>
+                  By Creating or logging to this account, you are{"\n"}agreeing
+                  with our{" "}
+                  <Text style={styles.termsAndConditionText2}>
+                    Terms & Conditions
+                  </Text>{" "}
+                  and{"\n"}
+                  <Text style={styles.termsAndConditionText3}>
+                    PRIVACY STATEMENT
+                  </Text>
+                  .
+                </Text>
+              </View>
+
+              <View style={{ marginVertical: 10 }}>
+                <Button
+                  onPress={props.handleSubmit}
+                  title="SIGN UP"
+                  buttonStyle={Parameters.styledButton}
+                  titleStyle={Parameters.buttonTitle}
+                />
+              </View>
             </View>
           )}
         </Formik>
+        <View>
+          <Text style={styles.haveAccountText}>
+            Already Have an Account? Sign In.
+          </Text>
+        </View>
+
+        <View style={styles.buttonView}>
+          <Button
+            onPress={() => {
+              navigation.navigate("SignInScreen");
+            }}
+            title="Sign In"
+            buttonStyle={styles.signInButton}
+            titleStyle={styles.signInButtonTitle}
+          />
+        </View>
       </ScrollView>
     </View>
   );
