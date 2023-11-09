@@ -47,7 +47,7 @@ export const Parameters = {
 
 export const title = {
   color: Colors.PrimaryColor,
-  fontSize: 22,
+  fontSize: 20,
   textAlign: "center",
   fontWeight: "bold",
 };

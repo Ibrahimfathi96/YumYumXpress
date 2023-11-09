@@ -10,11 +10,12 @@ import { auth, database } from "../../../../firebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
 export default function SignInScreen({ navigation }) {
-  const [focusedTextInput1, setFocusedTextInput1] = useState(false);
-  const [focusedTextInput2, setFocusedTextInput2] = useState(false);
+  const [focusedemail, setFocusedEmail] = useState(false);
+  const [focusedPassword, setFocusedPassword] = useState(false);
+  const [bluredPassword, setBluredPassword] = useState(false);
 
-  const textInputRef1 = useRef(1);
-  const textInputRef2 = useRef(2);
+  const emailRef = useRef(1);
+  const passwordRef = useRef(2);
 
   async function signIn(data) {
     const { password, email } = data;
@@ -29,7 +30,7 @@ export default function SignInScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Header title="Sign In" iconName="arrow-left" navigation={navigation} />
-      <View style={{ marginLeft: 20, margin: 30 }}>
+      <View style={{ marginTop: 20 }}>
         <Text style={title}>Welcome Back</Text>
         <Text style={title}>To YumYumXpress Community</Text>
       </View>
@@ -49,8 +50,8 @@ export default function SignInScreen({ navigation }) {
             <View style={{ marginTop: 20 }}>
               <View style={styles.textInput1}>
                 <Animatable.View
-                  animation={focusedTextInput1 ? "" : "fadeInRight"}
-                  duration={100}
+                  animation={focusedemail ? "fadeInLeft" : "fadeInRight"}
+                  duration={400}
                   useNativeDriver={true}
                 >
                   <Icon
@@ -61,13 +62,13 @@ export default function SignInScreen({ navigation }) {
                 </Animatable.View>
                 <TextInput
                   style={{ width: "90%", fontSize: 16, fontWeight: "500" }}
-                  placeholder="enter your email"
-                  ref={textInputRef1}
+                  placeholder="Email Address"
+                  ref={emailRef}
                   onFocus={() => {
-                    setFocusedTextInput1(false);
+                    setFocusedEmail(false);
                   }}
                   onBlur={() => {
-                    setFocusedTextInput1(true);
+                    setFocusedEmail(true);
                   }}
                   onChangeText={props.handleChange("email")}
                   value={props.values.email}
@@ -77,8 +78,8 @@ export default function SignInScreen({ navigation }) {
 
               <View style={styles.textInput1}>
                 <Animatable.View
-                  animation={focusedTextInput2 ? "" : "fadeInRight"}
-                  duration={100}
+                  animation={focusedPassword ? "fadeInLeft" : "fadeInRight"}
+                  duration={400}
                   useNativeDriver={true}
                 >
                   <Icon
@@ -88,23 +89,23 @@ export default function SignInScreen({ navigation }) {
                   />
                 </Animatable.View>
                 <TextInput
-                  placeholder="enter your password"
-                  ref={textInputRef2}
+                  placeholder="Password"
+                  ref={passwordRef}
                   secureTextEntry
                   style={{ width: "80%", fontSize: 16, fontWeight: "500" }}
                   onFocus={() => {
-                    setFocusedTextInput2(false);
+                    setFocusedPassword(false);
                   }}
                   onBlur={() => {
-                    setFocusedTextInput2(true);
+                    setBluredPassword(true);
                   }}
                   onChangeText={props.handleChange("password")}
                   value={props.values.password}
                   keyboardType="visible-password"
                 />
                 <Animatable.View
-                  animation={focusedTextInput2 ? "" : "fadeInLeft"}
-                  duration={100}
+                  animation={bluredPassword ? "fadeInRight" : "fadeInLeft"}
+                  duration={400}
                   useNativeDriver={true}
                 >
                   <Icon

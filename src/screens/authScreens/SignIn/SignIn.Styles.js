@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
   text1: {
     color: Colors.grey2,
     fontSize: 16,
+    fontWeight: "600",
   },
   textInput1: {
     borderWidth: 1,
