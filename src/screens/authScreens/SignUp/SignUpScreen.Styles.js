@@ -55,9 +55,6 @@ const styles = StyleSheet.create({
     color: "#3fbe70",
     fontWeight: "600",
   },
-  termsAndConditionText3: {
-    fontWeight: "600",
-  },
   signInButton: {
     backgroundColor: "white",
     alignContent: "center",

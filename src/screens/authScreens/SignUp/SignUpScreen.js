@@ -154,7 +154,7 @@ export default function SignUpScreen({ navigation }) {
                     Terms & Conditions
                   </Text>{" "}
                   and{"\n"}
-                  <Text style={styles.termsAndConditionText3}>
+                  <Text style={styles.termsAndConditionText2}>
                     PRIVACY STATEMENT
                   </Text>
                   .
