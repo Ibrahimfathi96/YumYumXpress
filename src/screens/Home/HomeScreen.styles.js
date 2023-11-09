@@ -28,9 +28,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     backgroundColor: Colors.grey4,
-    borderRadius: 16,
+    borderRadius: 10,
     paddingVertical: 6,
-    paddingHorizontal: 16,
+    paddingHorizontal: 12,
     marginRight: 10,
   },
   style1: {
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     paddingHorizontal: 8,
     paddingVertical: 4,
-    borderRadius: 16,
+    borderRadius: 8,
   },
   headerText: {
     color: Colors.grey2,

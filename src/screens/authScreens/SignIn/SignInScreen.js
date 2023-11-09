@@ -1,12 +1,12 @@
 import React, { useState, useRef } from "react";
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, Alert } from "react-native";
 import { Button, Icon, SocialIcon } from "react-native-elements";
 import { Colors, Parameters, title } from "../../../global/styles";
 import * as Animatable from "react-native-animatable";
 import { Formik } from "formik";
 import Header from "../../../components/Header";
 import styles from "./SignIn.Styles";
-import { auth, database } from "../../../../firebaseConfig";
+import { auth } from "../../../../firebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
 export default function SignInScreen({ navigation }) {

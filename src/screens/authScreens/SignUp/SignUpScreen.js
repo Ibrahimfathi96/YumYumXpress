@@ -1,11 +1,13 @@
 import React, { useRef, useState } from "react";
-import { View, ScrollView, Text, TextInput } from "react-native";
+import { View, ScrollView, Text, TextInput, Alert } from "react-native";
 import styles from "./SignUpScreen.Styles";
 import Header from "../../../components/Header";
 import { Colors, Parameters, title } from "../../../global/styles";
 import { Formik } from "formik";
 import { Icon, Button } from "react-native-elements";
 import * as Animatable from "react-native-animatable";
+import { auth } from "../../../../firebaseConfig";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const initialValues = {
   email: "",
@@ -13,8 +15,31 @@ const initialValues = {
   phoneNumber: "",
   firstName: "",
   lastName: "",
-  userName: "",
 };
+
+async function signUp(data) {
+  const { password, email, firstName, lastName, phoneNumber } = data;
+  const userCredential = await createUserWithEmailAndPassword(
+    auth,
+    email,
+    password
+  )
+    .then(async (userCredential) => {
+      console.log("USER ACCOUNT CREATED SUCCESSFULLY");
+    })
+    .catch((error) => {
+      if (error.code === "auth/email-already-in-use") {
+        Alert.alert("Email already in use");
+      } else if (error.code === "auth/weak-password") {
+        Alert.alert("Password should be at least 6 characters");
+      } else if (error.code === "auth/invalid-email") {
+        Alert.alert("Invalid email address");
+      } else {
+        Alert.alert("ErrorMsg:", error.message);
+        Alert.alert("ErrorCode:", error.code);
+      }
+    });
+}
 
 export default function SignUpScreen({ navigation }) {
   const [focusedemail, setFocusedEmail] = useState(false);
@@ -164,7 +189,7 @@ export default function SignUpScreen({ navigation }) {
               <View style={{ marginVertical: 10 }}>
                 <Button
                   onPress={props.handleSubmit}
-                  title="SIGN UP"
+                  title="CREATE MY ACCOUNT"
                   buttonStyle={Parameters.styledButton}
                   titleStyle={Parameters.buttonTitle}
                 />
