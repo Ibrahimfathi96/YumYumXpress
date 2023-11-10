@@ -48,6 +48,7 @@ export default function SignUpScreen({ navigation }) {
 
   const emailRef = useRef(1);
   const passwordRef = useRef(2);
+
   return (
     <View style={styles.container}>
       <Header

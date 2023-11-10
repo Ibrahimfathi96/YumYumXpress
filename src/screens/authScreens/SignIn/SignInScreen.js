@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import { View, Text, TextInput, TouchableOpacity, Alert } from "react-native";
 import { Button, Icon, SocialIcon } from "react-native-elements";
 import { Colors, Parameters, title } from "../../../global/styles";
@@ -8,6 +8,7 @@ import Header from "../../../components/Header";
 import styles from "./SignIn.Styles";
 import { auth } from "../../../../firebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { SignInContext } from "../../../contexts/AuthContext";
 
 export default function SignInScreen({ navigation }) {
   const [focusedemail, setFocusedEmail] = useState(false);
@@ -17,14 +18,30 @@ export default function SignInScreen({ navigation }) {
   const emailRef = useRef(1);
   const passwordRef = useRef(2);
 
+  const { dispatchSignedIn } = useContext(SignInContext);
+
   async function signIn(data) {
-    const { password, email } = data;
-    await signInWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        console.log("Login success");
-        navigation.navigate("AppDrawer");
-      })
-      .catch((err) => Alert.alert("Login error", err.message));
+    try {
+      const { password, email } = data;
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      if (userCredential) {
+        console.log("LoggedIn successfully: ", userCredential);
+        dispatchSignedIn({
+          type: "UPDATE_SIGN_IN",
+          payload: {
+            userToken: "signed-in",
+          },
+        });
+        // navigation.navigate("AppDrawer");
+      }
+    } catch (error) {
+      Alert.alert("Login errorMsg:", err.message);
+      Alert.alert("Login errorCode:", err.code);
+    }
   }
 
   return (

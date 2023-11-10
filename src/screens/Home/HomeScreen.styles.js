@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.grey4,
     borderRadius: 10,
     paddingVertical: 6,
-    paddingHorizontal: 12,
+    paddingHorizontal: 8,
     marginRight: 10,
   },
   style1: {
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     paddingVertical: 2,
   },
   smallCard: {
-    borderRadius: 20,
+    borderRadius: 12,
     backgroundColor: Colors.grey5,
     justifyContent: "center",
     alignItems: "center",
@@ -73,9 +73,10 @@ const styles = StyleSheet.create({
     width: 80,
     height: 100,
     margin: 10,
+    elevation: 10,
   },
   selectedSmallCard: {
-    borderRadius: 20,
+    borderRadius: 12,
     backgroundColor: Colors.PrimaryColor,
     justifyContent: "center",
     alignItems: "center",
@@ -83,6 +84,7 @@ const styles = StyleSheet.create({
     width: 80,
     height: 100,
     margin: 10,
+    elevation: 10,
   },
   smallImage: {
     height: 70,

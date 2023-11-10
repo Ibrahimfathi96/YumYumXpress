@@ -3,8 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import OnBoardingScreen from "../screens/authScreens/OnBoarding/OnBoardingScreen";
 import SignInScreen from "../screens/authScreens/SignIn/SignInScreen";
 import SignUpScreen from "../screens/authScreens/SignUp/SignUpScreen";
-import RestaurantsMapScreen from "../screens/RestaurantMap/RestaurantsMapScreen";
-import AppDrawer from "./DrawerNavigation";
+
 
 const AuthStackNavigator = createStackNavigator();
 export default function AuthStack() {
@@ -14,7 +13,7 @@ export default function AuthStack() {
         name="OnBoardingScreen"
         component={OnBoardingScreen}
         options={{
-          headerShown: false
+          headerShown: false,
           // ...TransitionPresets.RevealFromBottomAndroid,
         }}
       />
@@ -22,7 +21,7 @@ export default function AuthStack() {
         name="SignInScreen"
         component={SignInScreen}
         options={{
-          headerShown: false
+          headerShown: false,
           // ...TransitionPresets.RevealFromBottomAndroid,
         }}
       />
@@ -30,23 +29,7 @@ export default function AuthStack() {
         name="SignUpScreen"
         component={SignUpScreen}
         options={{
-          headerShown: false
-          // ...TransitionPresets.RevealFromBottomAndroid,
-        }}
-      />
-      <AuthStackNavigator.Screen
-        name="AppDrawer"
-        component={AppDrawer}
-        options={{
-          headerShown: false
-          // ...TransitionPresets.RevealFromBottomAndroid,
-        }}
-      />
-      <AuthStackNavigator.Screen
-        name="RestaurantsMapScreen"
-        component={RestaurantsMapScreen}
-        options={{
-          headerShown: false
+          headerShown: false,
           // ...TransitionPresets.RevealFromBottomAndroid,
         }}
       />

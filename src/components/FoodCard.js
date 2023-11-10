@@ -17,7 +17,7 @@ export default function FoodCard({
   screenWidth,
 }) {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={onPressFoodCard}>
       <View style={{ ...styles.cardView, width: screenWidth }}>
         <Image
           style={{ ...styles.image, width: screenWidth }}

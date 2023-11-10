@@ -4,7 +4,7 @@ import { Colors } from "./src/global/styles";
 import { useFonts } from "expo-font";
 import "react-native-gesture-handler";
 import RouteNavigator from "./src/navigation/RouteNavigator";
-
+import { SignInContextProvider } from "./src/contexts/AuthContext";
 export default function App() {
   const [fontsLoaded] = useFonts({
     RobotoBlack: require("./assets/fonts/Roboto-Black.ttf"),
@@ -22,9 +22,9 @@ export default function App() {
   });
   if (!fontsLoaded) return null;
   return (
-    <>
+    <SignInContextProvider>
       <StatusBar barStyle="light-content" backgroundColor={Colors.statusbar} />
       <RouteNavigator />
-    </>
+    </SignInContextProvider>
   );
 }

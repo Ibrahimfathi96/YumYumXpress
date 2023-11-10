@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   textContainer: {
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 40,
+    marginTop: 20,
   },
   title2: {
     color: Colors.grey2,
@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     backgroundColor: "white",
     paddingHorizontal: 16,
+    marginTop: 20,
   },
   textInputView: {
     flexDirection: "row",
@@ -36,6 +37,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   textInput: {
+    flex: 1,
     fontSize: 16,
     fontWeight: "bold",
     marginLeft: 10,

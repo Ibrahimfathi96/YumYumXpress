@@ -1,10 +1,5 @@
-import {
-  View,
-  Text,
-  Switch,
-  StyleSheet,
-} from "react-native";
-import React from "react";
+import { View, Text, Switch, StyleSheet, Alert } from "react-native";
+import React, { useContext } from "react";
 import {
   DrawerContentScrollView,
   DrawerItem,
@@ -13,10 +8,28 @@ import {
 import { Icon, Avatar } from "react-native-elements";
 import { Colors } from "../global/styles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-
-const insets = useSafeAreaInsets;
+import { auth } from "../../firebaseConfig";
+import { SignInContext } from "../contexts/AuthContext";
 
 export default function DrawerContent(props) {
+  const insets = useSafeAreaInsets;
+  const { dispatchSignedIn } = useContext(SignInContext);
+  async function signOut() {
+    try {
+      await auth.signOut().then(() => {
+        console.log("Signed out successfully");
+        dispatchSignedIn({
+          type: "UPDATE_SIGN_IN",
+          payload: {
+            userToken: null,
+          },
+        });
+      });
+    } catch (error) {
+      Alert.alert("ErrorMsg:", error.message);
+      Alert.alert("ErrorCode:", error.code);
+    }
+  }
   return (
     <View style={styles.container}>
       <DrawerContentScrollView
@@ -125,6 +138,10 @@ export default function DrawerContent(props) {
 
       <DrawerItem
         label="Sign Out"
+        onPress={() => {
+          console.log("Sign Out pressed");
+          signOut();
+        }}
         icon={({ color, size }) => (
           <Icon
             type="material-community"
@@ -132,7 +149,8 @@ export default function DrawerContent(props) {
             color={color}
             size={size}
             onPress={() => {
-              // signOut();
+              console.log("Sign Out pressed");
+              signOut();
             }}
           />
         )}
