@@ -8,19 +8,20 @@ import {
   Dimensions,
   TouchableOpacity,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./HomeScreen.styles";
 import HomeHeader from "../../components/HomeHeader";
 import { Colors } from "../../global/styles";
 import { Icon } from "react-native-elements";
-import CountDown from "react-native-countdown-component";
 import { filterData, restaurantsData } from "../../global/data";
+import CountDown from "react-native-countdown-fixed";
 import FoodCard from "../../components/FoodCard";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 export default function HomeScreen({ navigation }) {
   const [delivery, setDelivery] = useState(true);
   const [indexCheck, setIndexCheck] = useState("0");
+
   return (
     <View style={styles.container}>
       <HomeHeader navigation={navigation} />
@@ -159,6 +160,7 @@ export default function HomeScreen({ navigation }) {
             >
               Options Changing in
             </Text>
+
             <CountDown
               until={3600}
               size={14}

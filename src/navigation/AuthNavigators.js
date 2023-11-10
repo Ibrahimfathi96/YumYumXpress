@@ -4,7 +4,6 @@ import OnBoardingScreen from "../screens/authScreens/OnBoarding/OnBoardingScreen
 import SignInScreen from "../screens/authScreens/SignIn/SignInScreen";
 import SignUpScreen from "../screens/authScreens/SignUp/SignUpScreen";
 
-
 const AuthStackNavigator = createStackNavigator();
 export default function AuthStack() {
   return (
@@ -17,6 +16,7 @@ export default function AuthStack() {
           // ...TransitionPresets.RevealFromBottomAndroid,
         }}
       />
+
       <AuthStackNavigator.Screen
         name="SignInScreen"
         component={SignInScreen}
@@ -25,6 +25,7 @@ export default function AuthStack() {
           // ...TransitionPresets.RevealFromBottomAndroid,
         }}
       />
+
       <AuthStackNavigator.Screen
         name="SignUpScreen"
         component={SignUpScreen}

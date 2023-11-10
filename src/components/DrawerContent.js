@@ -8,15 +8,16 @@ import {
 import { Icon, Avatar } from "react-native-elements";
 import { Colors } from "../global/styles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { auth } from "../../firebaseConfig";
 import { SignInContext } from "../contexts/AuthContext";
+import { auth } from "../../firebaseConfig";
 
 export default function DrawerContent(props) {
   const insets = useSafeAreaInsets;
   const { dispatchSignedIn } = useContext(SignInContext);
   async function signOut() {
-    try {
-      await auth.signOut().then(() => {
+    auth
+      .signOut()
+      .then(() => {
         console.log("Signed out successfully");
         dispatchSignedIn({
           type: "UPDATE_SIGN_IN",
@@ -24,11 +25,11 @@ export default function DrawerContent(props) {
             userToken: null,
           },
         });
+      })
+      .catch((error) => {
+        Alert.alert("ErrorMsg:", error.message);
+        Alert.alert("ErrorCode:", error.code);
       });
-    } catch (error) {
-      Alert.alert("ErrorMsg:", error.message);
-      Alert.alert("ErrorCode:", error.code);
-    }
   }
   return (
     <View style={styles.container}>
